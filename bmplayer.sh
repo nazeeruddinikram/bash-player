@@ -29,8 +29,13 @@ else
 	exit;
 fi
 #startup dialog
-zenity --forms --title="Bmplayer - $version" --text="\nSimple GUI for- Mplayer\n\tWritten by levi0x0\n\t\tVersion 1.0.3" --ok-label="Select video" --cancel-label="quit"
-
+zenity --forms --title="Bmplayer - $version" --text="bash-player - A simple GUI for Mplayer\n\n\t\tWritten by levi0x0\n\nVersion 1.0.3\nLicense: GPL3\n\n\t\t\tEnjoy (:"  --ok-label="Select video" --cancel-label="Exit"
+if [ $? -ne 0 ]; then 
+	echo "[DEBUG] exit"
+	exit
+else
+	echo "[DEBUG] Select video"
+fi
 #choose video
 video=`zenity --file-selection --title="Select video" --filename="$movies"`
 if [ $? -ne 0 ]; then
