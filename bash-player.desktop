@@ -1,3 +1,4 @@
+#!/usr/bin/env xdg-open
 [Desktop Entry]
 Categories=AudioVideo;Player;Video;
 Comment=A simple GUI for Mplayer
