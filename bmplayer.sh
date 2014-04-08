@@ -21,16 +21,17 @@
 #  
 
 #version
-version=0.4
+version=0.5
 
 #videos folder
 folder="/home/$USER/Videos"
 
-#date
-date="22-01-2014"
 
-#mplayer options (you can add)
-mplayerpa="-fs"
+#date="22-01-2014"
+date="08-04-2014"
+
+#mplayer options (Ex FULL SCREEN: -fs)
+mplayerpa=""
 
 #status var
 debug="[DEBUG]"
@@ -40,7 +41,7 @@ exit="[EXIT]"
 #exit in the and 0 for yes 1 for no
 exitend=1
 
-#enable mplayer utf8 support
+#enable mplayer utf8 support (for subtitles)
 #echo utf8=true >> ~/.mplayer/config
 
 #check if zenity installed
@@ -62,10 +63,10 @@ dialog() {
 	zenity  --question \
 	--title="Bmplayer - $version" \
 	--ok-label="Select video" \
-	--cancel-label="Exit"
+	--cancel-label="exit"
 	#test 1
 	if [ $?  -ne 0 ]; then 
-		echo "$exit Canceld."
+		echo "$exit Canceld..."
 		exit #exit
 	else
 		#select video
