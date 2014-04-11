@@ -1,7 +1,7 @@
 #!/bin/bash
 #  bmplayer.sh
 #  
-#  Copyright 2014 levi (https://github.com/levi0x0/bash-player)
+#  Copyright 2014 levi (levi0x0) (https://github.com/levi0x0/bash-player)
 #  
 #  bash-player is free software; you can redistribute it and/or modify
 #  it under the terms of the GNU General Public License as published by
@@ -19,27 +19,80 @@
 #  MA 02110-1301, USA.
 #  
 #  
+#
+#	Author: levi aka levi0x0 (http://github.com/levi0x0/)
+#	Date: 11-04-2014
+# 	Description:
+#
+#		"Bash-player is A simple GUI (Graphical User Interface) for mplayer
+#		Written in Shell Under Linux. "
+#
+# The script need 2 pakcages to run:
+#
+#	1. mplayer
+#	2. zenity
+#
+# ###### How to install Mplayer ######
+#
+# * on Ubuntu/Debian/LinuxMint:
+# 
+# sudo apt-get install mplayer
+#
+# * on Fedora:
+#
+# sudo yum install mplayer
+#
+# * on Arch Linux:
+#
+# sudo pacman -S mplayer
+#
+# ###### How to install Zenity ######
+#
+# * on Ubuntu/Debian/LinuxMint:
+# 
+# sudo apt-get install zenity
+#
+# * on Fedora:
+#
+# sudo yum install zenity
+#
+# * on Arch Linux:
+#
+# sudo pacman -S zenity
+#
+# That's it!
+########################
 
-#version
-version=0.5
+#script version
+version=0.6
 
 #videos folder
 folder="/home/$USER/Videos"
 
+#banner
+banner="Bash-player $version - Copyright 2014 (C) levi0x0 (https://github.com/levi0x0)"
 
 #date="22-01-2014"
-date="08-04-2014"
+#date="08-04-2014"
+date="11-04-2014"
 
 #mplayer options (Ex FULL SCREEN: -fs)
 mplayerpa=""
 
-#status var
+#status variables
 debug="[DEBUG]"
 error="[ERROR]"
 exit="[EXIT]"
 
-#exit in the and 0 for yes 1 for no
-exitend=1
+#show subtitles Dialog Default Show Dialog
+#1 for show 
+#0 for hide
+subtitlesDialog=1
+
+#exit in the and 
+#0 for yes 
+#1 for no
+exitend=0
 
 #enable mplayer utf8 support (for subtitles)
 #echo utf8=true >> ~/.mplayer/config
@@ -58,28 +111,59 @@ else
 	exit
 fi
 
-	
-dialog() {
+#help function
+help() {
+zenity  --list \
+--title="Mplayer - Shortcut" \
+--ok-label="Return" \
+--cancel-label="exit" \
+--width=100 \
+--height=400 \
+--text "Help Options for Mplayer Type this with Your Keyboard in Mplayer" \
+--column "Help" \
+--column "Key" \
+"Full Screen" f \
+"Volume Up" 0 \
+"Volume Down" 9 \
+"Quit/Stop" "Esc" \
+"Pause" "Space" \
+"v" "Toggle subtitle visibility." \
+"F" "Toggle displaying forced subtitles ."\
+"T" "Toggle stay-on-top (also see -ontop)." \
+"z and x" "Adjust subtitle delay by +/- 0.1 seconds." \
+"r and t" "Move subtitles up/down." \
+"left and right" "Seek backward/forward 10 seconds." \
+"up and down" "Seek forward/backward 1 minute."
+}
+
+#bash-player function
+bashplayer() {
 	zenity  --question \
-	--title="Bmplayer - $version" \
+	--width=100 \
+	--height=150 \
+	--title="Bash-player - $version" \
 	--ok-label="Select video" \
-	--cancel-label="exit"
+	--cancel-label="Help"
 	#test 1
 	if [ $?  -ne 0 ]; then 
-		echo "$exit Canceld..."
-		exit #exit
+		help #print help dialog
+		if [ $? -ne 0 ]; then
+			exit
+		else
+			bashplayer
+		fi
 	else
 		#select video
 		video=`zenity --file-selection --title="Select video" --filename=$folder`
 		if [ $? -ne 0 ]; then
 			echo "$debug no File selected."
 			exit #exit
-		else
+		elif [ $subtitlesDialog -eq 1 ]; then
 			zenity --question --title="add subtitles"  --text="Want to add Subtitles?"  --ok-label="Yes, add" --cancel-label="No, play video"
 			if [ $? -ne 0 ]; then
-				mplayer $mplayerpa "$video"
+				mplayer -title "Bash-player $version" $mplayerpa "$video"
 				if [ $exitend -eq 0 ];then
-					dialog
+					bashplayer
 				else
 					exit
 				fi
@@ -87,22 +171,30 @@ dialog() {
 			else
 				subtitles=`zenity --file-selection --title="Select subtitles" --filename=$folder`
 				#run mplayer 
-				mplayer $mplayerpa "$video" -sub  "$subtitles"
+				mplayer -title "Bash-player $version" $mplayerpa "$video" -sub  "$subtitles"
 				if [ $exitend -eq 0 ]; then
-					dialog
+					bashplayer
 				else
 					exit
 				fi
 			fi
+		#not showing subtitle dialog
+		else
+			mplayer -title "Bash-player $version" $mplayerpa "$video"
 		fi
 	fi
 }
 
 #check for command line args 
 if [ -z $1 ];then
-	echo "$debug No CLA"
-	dialog
+	echo "$debug No args.."
+	bashplayer
+
+#version
+elif [[ $1 == "--version" ]]; then
+	echo "Bash-player - $version"
+	exit
 else
 	video="$1"
-	mplayer $mplayerpa "$video"
+	mplayer -title "Bash-player $version" $mplayerpa "$video"
 fi
