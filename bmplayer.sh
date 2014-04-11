@@ -89,7 +89,7 @@ exit="[EXIT]"
 #0 for hide
 subtitlesDialog=1
 
-#exit in the and 
+#exit in the end 
 #0 for yes 
 #1 for no
 exitend=1
@@ -114,26 +114,26 @@ fi
 #help function
 help() {
 zenity  --list \
---title="Mplayer - Shortcut" \
---ok-label="Return" \
---cancel-label="exit" \
---width=100 \
---height=400 \
---text "Help Options for Mplayer Type this with Your Keyboard in Mplayer" \
---column "Help" \
---column "Key" \
-"Full Screen" f \
-"Volume Up" 0 \
-"Volume Down" 9 \
-"Quit/Stop" "Esc" \
-"Pause" "Space" \
-"v" "Toggle subtitle visibility." \
-"F" "Toggle displaying forced subtitles ."\
-"T" "Toggle stay-on-top (also see -ontop)." \
-"z and x" "Adjust subtitle delay by +/- 0.1 seconds." \
-"r and t" "Move subtitles up/down." \
-"left and right" "Seek backward/forward 10 seconds." \
-"up and down" "Seek forward/backward 1 minute."
+	--title="Mplayer - Shortcut" \
+	--ok-label="Return" \
+	--cancel-label="exit" \
+	--width=100 \
+	--height=400 \
+	--text "Help Options for Mplayer Type this with Your Keyboard in Mplayer" \
+	--column "Help" \
+	--column "Key" \
+	"Full Screen" f \
+	"Volume Up" 0 \
+	"Volume Down" 9 \
+	"Quit/Stop" "Esc" \
+	"Pause" "Space" \
+	"v" "Toggle subtitle visibility." \
+	"F" "Toggle displaying forced subtitles ."\
+	"T" "Toggle stay-on-top (also see -ontop)." \
+	"z and x" "Adjust subtitle delay by +/- 0.1 seconds." \
+	"r and t" "Move subtitles up/down." \
+	"left and right" "Seek backward/forward 10 seconds." \
+	"up and down" "Seek forward/backward 1 minute."
 }
 
 #bash-player function
@@ -178,7 +178,7 @@ bashplayer() {
 					exit
 				fi
 			fi
-		#not showing subtitle dialog
+		#not showing subtitle dialog do:
 		else
 			mplayer -title "Bash-player $version" $mplayerpa "$video"
 		fi
