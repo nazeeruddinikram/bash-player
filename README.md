@@ -14,6 +14,31 @@ Prview:
 
 ### How to install bash-player?
 
+**Bash-player Requires 2 packages:**
+* zenity
+* mplayer
+
+**Install mplayer:**
+* on Ubuntu/Debian/LinuxMint: 
+ `sudo apt-get install mplayer`
+
+* on Fedora: 
+ `sudo yum install mplayer`
+
+* on Arch Linux: 
+ `sudo pacman -S mplayer`
+
+**Install zenity:**
+* on Ubuntu/Debian/LinuxMint: 
+ `sudo apt-get install zenity`
+
+* on Fedora:
+ `sudo yum install zenity`
+
+* on Arch Linux:
+ `sudo pacman -S zenity`
+
+**Install bash-player**
 * Download the Repository package: [Download]( https://github.com/levi0x0/bash-player/archive/master.zip)
 * Unpac the zip file 
 
