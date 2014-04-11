@@ -1,14 +1,12 @@
-bash-player
-===========
+## What is bash-player?
 
-A simple GUI for Mplayer
+"Bash-player is A Simple GUI (Graphical User Interface), for Mplayer written in Shell."
 
-Tested on: Arch Linux, Debian, LinuxMint, Ubuntu,
+## Why i should to use Bash-player?
+> if you Want A Simple GUI for Mplayer USE BASH-PLAYER. 
+> And Lightweight Video Player To Play Videos, Music USE Mplayer.
 
-Run bash-player:
-Open terminal and run` bmplayer`
+###  MPLAYER + ZENITY == BASH-PLAYER!
 
-Required:
-* Mplayer
-* Zenity
-
+Prview:
+![SS01](https://raw.githubusercontent.com/wiki/levi0x0/bash-player/bash-playerSS01.png)
