@@ -19,13 +19,16 @@ Prview:
 
 **from the terminal in bash-player dir run:**
 
-`chmod +x install.sh`**
+`chmod +x install.sh`
 
 **And install with this:**
 
-`sudo ./install install`
+`sudo ./install.sh install`
 
 **We need root for moving files look at the source!**
+
+* The package also available in the Arch Linux AUR repository
+[Arch Linux AUR](https://aur.archlinux.org/packages/bash-player-git/)
 
 ### How to uninstall bash-player?
 
@@ -33,7 +36,7 @@ Download the install.sh script here: [Download install.sh](https://raw.githubuse
 
 Run this:
 `chmod +x install.sh`
-`./install uninstall`
+`./install.sh uninstall`
 
 
 _> That's it!_
