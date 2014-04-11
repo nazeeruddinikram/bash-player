@@ -92,7 +92,7 @@ subtitlesDialog=1
 #exit in the and 
 #0 for yes 
 #1 for no
-exitend=0
+exitend=1
 
 #enable mplayer utf8 support (for subtitles)
 #echo utf8=true >> ~/.mplayer/config
