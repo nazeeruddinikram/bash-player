@@ -55,7 +55,7 @@ uninstallbp() {
 	echo "Bash-Player uninstaller"
 	echo "======================"
 	if [ $UID != 0 ];then
-		echo "[!] Please run as root! we need to move files."
+		echo "[!] Please run as root! we need to remove files."
 		echo -e "Look at the source! (:\n"
 		exit
 	else
