@@ -24,44 +24,8 @@
 #	Date: 11-04-2014
 # 	Description:
 #
-#		"Bash-player is A simple GUI (Graphical User Interface) for mplayer
+#		"Bash-player script is A simple GUI (Graphical User Interface) for mplayer
 #		Written in Shell Under Linux. "
-#
-# The script need 2 pakcages to run:
-#
-#	1. mplayer
-#	2. zenity
-#
-# ###### How to install Mplayer ######
-#
-# * on Ubuntu/Debian/LinuxMint:
-# 
-# sudo apt-get install mplayer
-#
-# * on Fedora:
-#
-# sudo yum install mplayer
-#
-# * on Arch Linux:
-#
-# sudo pacman -S mplayer
-#
-# ###### How to install Zenity ######
-#
-# * on Ubuntu/Debian/LinuxMint:
-# 
-# sudo apt-get install zenity
-#
-# * on Fedora:
-#
-# sudo yum install zenity
-#
-# * on Arch Linux:
-#
-# sudo pacman -S zenity
-#
-# That's it!
-########################
 
 #script version
 version=0.6
