@@ -59,7 +59,9 @@ Prview:
 Download the install.sh script here: [Download install.sh](https://raw.githubusercontent.com/levi0x0/bash-player/master/install.sh)
 
 Run this:
+
 `chmod +x install.sh`
+
 `./install.sh uninstall`
 
 
