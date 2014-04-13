@@ -28,7 +28,7 @@
 #		Written in Shell Under Linux. "
 
 #script version
-version=0.6
+version="0.6-2"
 
 #videos folder
 folder="/home/$USER/Videos"
@@ -38,7 +38,8 @@ banner="Bash-player $version - Copyright 2014 (C) levi0x0 (https://github.com/le
 
 #date="22-01-2014"
 #date="08-04-2014"
-date="11-04-2014"
+#date="11-04-2014"
+date="13-04-2014"
 
 #mplayer options (Ex FULL SCREEN: -fs)
 mplayerpa=""
@@ -54,21 +55,21 @@ exit="[EXIT]"
 subtitlesDialog=1
 
 #exit in the end 
-#0 for yes 
-#1 for no
+#0 for no 
+#1 for yes
 exitend=1
 
 #enable mplayer utf8 support (for subtitles)
 #echo utf8=true >> ~/.mplayer/config
 
 #check if zenity installed
-if which zenity 2> /dev/null ;then 
+if zenity --version &> /dev/null ;then 
 	echo "$debug Found zenity"
 else
 	echo "$error Zenity package not installed"
 fi
 #check if mplayer installed
-if  which mplayer 2> /dev/null ;then 
+if mplayer &> /dev/null ;then 
 	echo "$debug Found mplayer"
 else
 	zenity --error --title="mplayer not found" --text="mplayer package not installed"
@@ -118,12 +119,12 @@ bashplayer() {
 		fi
 	else
 		#select video
-		video=`zenity --file-selection --title="Select video" --filename=$folder`
+		video=`zenity --file-selection --title="select video" --filename=$folder`
 		if [ $? -ne 0 ]; then
 			echo "$debug no File selected."
-			exit #exit
+			exit
 		elif [ $subtitlesDialog -eq 1 ]; then
-			zenity --question --title="add subtitles"  --text="Want to add Subtitles?"  --ok-label="Yes, add" --cancel-label="No, play video"
+            zenity --question --title="add subtitles"  --text="Subtitles? (You can disable this Dialog)"  --ok-label="Yes, add" --cancel-label="No, play video"
 			if [ $? -ne 0 ]; then
 				mplayer -title "Bash-player $version" $mplayerpa "$video"
 				if [ $exitend -eq 0 ];then
@@ -133,7 +134,7 @@ bashplayer() {
 				fi
 			#else select subtitles
 			else
-				subtitles=`zenity --file-selection --title="Select subtitles" --filename=$folder`
+				subtitles=`zenity --file-selection --title="select subtitles" --filename=$folder`
 				#run mplayer 
 				mplayer -title "Bash-player $version" $mplayerpa "$video" -sub  "$subtitles"
 				if [ $exitend -eq 0 ]; then
@@ -145,13 +146,17 @@ bashplayer() {
 		#not showing subtitle dialog do:
 		else
 			mplayer -title "Bash-player $version" $mplayerpa "$video"
+            if [ $exitend -eq 0 ];then
+                bashplayer
+            else
+                exit
+            fi
 		fi
 	fi
 }
-
-#check for command line args 
+ 
 if [ -z $1 ];then
-	echo "$debug No args.."
+	echo "$debug Bash-player Started..."
 	bashplayer
 
 #version
@@ -161,4 +166,9 @@ elif [[ $1 == "--version" ]]; then
 else
 	video="$1"
 	mplayer -title "Bash-player $version" $mplayerpa "$video"
+    if [ $exitend -eq 0 ];then
+        bashplayer
+    else
+        exit
+    fi
 fi
