@@ -102,7 +102,6 @@ elif [[ $1 == "-c" ]] || [[ $1 == "--config" ]];then
 	basic
 	subtitle_config
 	echo -e "\n[!] OK! all done Enjoy!"
-	echo -e "[!] Bash-player will backup Your Original config file only Once!\n"
 else
 	usage
 	exit
