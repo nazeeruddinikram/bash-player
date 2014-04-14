@@ -69,7 +69,7 @@ Run this:
 
 "Mplayer_config.sh script will create custom mplayer config for you!"
 
-Look at the wiki:
+Look at the wiki: [Wiki](https://github.com/levi0x0/bash-player/wiki/Subtitles)
 
 
 **How to use?**
@@ -82,4 +82,5 @@ Run:
 
 ` ./mplayer_config.sh -c`
 
-_>That's it!_
+
+_That's it!_
