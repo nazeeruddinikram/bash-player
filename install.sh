@@ -42,14 +42,18 @@ installbp() {
 	mv bmplayer.sh $bin/bmplayer
 	chmod +x $bin/bmplayer
 	#moving the icon tho pixmaps
-	echo "[!] Moving bash-player.png.."
+	echo "[!] Moving bash-player.png.. to $pixmaps"
 	mv bash-player.png $pixmaps
 	#moving desktop 
-	echo "[!] Moving bash-player.desktop.."
+	echo "[!] Moving bash-player.desktop.. to $desktop"
 	mv bash-player.desktop $desktop
+    #moving bmplayer_sh
+    echo "[!] Moving mplayer_config.sh to $bin"
+    mv mplayer_config.sh $bin/mplayer_config
+    chmod +x $bin/mplayer_config
 	echo -e "\nOK! Bash-player installed.!"
 	echo "Use your Application menu to start bash-player"
-	echo -e "Or run 'bmplayer' from the terminal..\n" 
+	echo -e "Or run 'bmplayer/mplayer_config' from the terminal..\n" 
 }
 
 uninstallbp() {
@@ -63,15 +67,18 @@ uninstallbp() {
 	else
 		echo "[!] We are ready to Go!"
 	fi
-	#moving bmplayer.sh to /usr/bin
+	#removing bmplayer.sh to /usr/bin
 	echo "[!] removing bmplayer.."
 	rm -r $bin/bmplayer
-	#moving the icon to pixmaps
+	#removing the icon to pixmaps
 	echo "[!] rmoving bash-player.png.."
 	rm -r $pixmaps/bash-player.png
-	#moving desktop 
+	#removing desktop 
 	echo "[!] removing bash-player.desktop.."
 	rm -r $desktop/bash-player.desktop
+    #removing mplayer_config.sh
+    echo "[!] removing mplayer_config.sh.."
+    rm -r $bin/mplayer_config
 	echo -e "\nOK! Bash-player Not installed.!"
 	echo -e "Written by levi (http://github.com/levi0x0)\n"
 }
