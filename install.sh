@@ -69,16 +69,16 @@ uninstallbp() {
 	fi
 	#removing bmplayer.sh to /usr/bin
 	echo "[!] removing bmplayer.."
-	rm -r $bin/bmplayer
+	rm -f $bin/bmplayer
 	#removing the icon to pixmaps
 	echo "[!] rmoving bash-player.png.."
-	rm -r $pixmaps/bash-player.png
+	rm -f $pixmaps/bash-player.png
 	#removing desktop 
 	echo "[!] removing bash-player.desktop.."
-	rm -r $desktop/bash-player.desktop
+	rm -f $desktop/bash-player.desktop
     #removing mplayer_config.sh
     echo "[!] removing mplayer_config.sh.."
-    rm -r $bin/mplayer_config
+    rm -f $bin/mplayer_config
 	echo -e "\nOK! Bash-player Not installed.!"
 	echo -e "Written by levi (http://github.com/levi0x0)\n"
 }
