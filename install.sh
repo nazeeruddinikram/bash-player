@@ -1,6 +1,8 @@
 #!/bin/bash
 # install.sh
 #
+# This file is part of the bash-player script 
+#
 # Install bash-player to Your System
 # Author: levi (levi0x0) "http://github.com/levi0x0/bash-player"
 # Version: 0.1
@@ -25,9 +27,9 @@ exit="[EXIT]"
 banner="Bash-player Installer $version Copyright 2014 (C) levi (levi0x0)"
 
 installbp() {
-	echo "-=-=-=-=-=-=-=-=-=-=-="
+	echo "***********************"
 	echo "Bash-Player Installer"
-	echo "======================"
+	echo "***********************"
 	if [ $UID != 0 ];then
 		echo "[!] Please run as root! we need to move files."
 		echo -e "Look at the source! (:\n"
@@ -51,9 +53,9 @@ installbp() {
 }
 
 uninstallbp() {
-	echo "-=-=-=-=-=-=-=-=-=-=-="
+	echo "***********************"
 	echo "Bash-Player uninstaller"
-	echo "======================"
+	echo "***********************"
 	if [ $UID != 0 ];then
 		echo "[!] Please run as root! we need to remove files."
 		echo -e "Look at the source! (:\n"
@@ -64,7 +66,7 @@ uninstallbp() {
 	#moving bmplayer.sh to /usr/bin
 	echo "[!] removing bmplayer.."
 	rm -r $bin/bmplayer
-	#moving the icon tho pixmaps
+	#moving the icon to pixmaps
 	echo "[!] rmoving bash-player.png.."
 	rm -r $pixmaps/bash-player.png
 	#moving desktop 
