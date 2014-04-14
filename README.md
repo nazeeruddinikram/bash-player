@@ -60,9 +60,26 @@ Download the install.sh script here: [Download install.sh](https://raw.githubuse
 
 Run this:
 
-`chmod +x install.sh`
+` chmod +x install.sh`
 
-`./install.sh uninstall`
+` ./install.sh uninstall`
 
 
-_> That's it!_
+###Mplayer_conifg.sh script###
+
+"Mplayer_config.sh script will create custom mplayer config for you!"
+
+Look at the wiki:
+
+
+**How to use?**
+
+"Download the repository: [Download](https://github.com/levi0x0/bash-player/archive/master.zip)"
+
+Run:
+
+`chmod +x mplayer_config.sh`
+
+` ./mplayer_config.sh -c`
+
+_>That's it!_
