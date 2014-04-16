@@ -28,7 +28,7 @@
 #		Written in Shell Under Linux. "
 
 #script version
-version="0.6-2"
+version="0.7"
 
 #videos folder
 folder="/home/$USER/Videos"
@@ -123,7 +123,7 @@ bashplayer() {
 		--ok-label="Select video" \
 		--cancel-label="Help"
 	else
-		echo "[DEBUG] No Startup Dialog."
+		echo "$debug No Startup Dialog."
 	fi
 	#test 1
 	if [ $?  -ne 0 ]; then 
@@ -135,12 +135,12 @@ bashplayer() {
 		fi
 	else
 		#select video
-		video=`zenity --file-selection --title="select video" --filename=$folder`
+		video=`zenity --file-selection --title="Select video" --filename=$folder`
 		if [ $? -ne 0 ]; then
 			echo "$debug no File selected."
 			exit
 		elif [ $subtitlesDialog -eq 1 ]; then
-            zenity --question --title="add subtitles"  --text="Subtitles? (You can disable this Dialog)"  --ok-label="Yes, add" --cancel-label="No, play video"
+            zenity --question --title="Add subtitles"  --text="Subtitles? \n\t(You can disable this Dialog)"  --ok-label="Yes, add" --cancel-label="No, play video"
 			if [ $? -ne 0 ]; then
 				$PLAYER -title "Bash-player $version" $mplayerpa "$video"
 				if [ $exitend -eq 0 ];then
@@ -150,7 +150,7 @@ bashplayer() {
 				fi
 			#else select subtitles
 			else
-				subtitles=`zenity --file-selection --title="select subtitles" --filename=$folder`
+				subtitles=`zenity --file-selection --title="Select subtitles" --filename=$folder`
 				#run mplayer 
 				$PLAYER -title "Bash-player $version" $mplayerpa "$video" -sub  "$subtitles"
 				if [ $exitend -eq 0 ]; then
