@@ -24,7 +24,7 @@
 #	Date: 11-04-2014
 # 	Description:
 #
-#		"Bash-player script is A simple GUI (Graphical User Interface) for mplayer
+#		"Bash-player script is A simple GUI (Graphical User Interface) for mplayer/mpv
 #		Written in Shell Under Linux. "
 
 #script version
@@ -69,11 +69,17 @@ else
 	echo "$error Zenity package not installed"
 fi
 #check if mplayer installed
-if mplayer &> /dev/null ;then 
+if mpldsfayer &> /dev/null ;then
+	PLAYER="mplayer" 
 	echo "$debug Found mplayer"
 else
-	zenity --error --title="mplayer not found" --text="mplayer package not installed"
-	exit
+	if mpv &> /dev/null ;then
+	PLAYER="mpv" 
+	echo "$debug Found mpv"
+	else
+		zenity --error --title="mplayer/mpv not found" --text="mplayer/mpv package not installed"
+		exit
+	fi
 fi
 
 #help function
@@ -126,7 +132,7 @@ bashplayer() {
 		elif [ $subtitlesDialog -eq 1 ]; then
             zenity --question --title="add subtitles"  --text="Subtitles? (You can disable this Dialog)"  --ok-label="Yes, add" --cancel-label="No, play video"
 			if [ $? -ne 0 ]; then
-				mplayer -title "Bash-player $version" $mplayerpa "$video"
+				$PLAYER -title "Bash-player $version" $mplayerpa "$video"
 				if [ $exitend -eq 0 ];then
 					bashplayer
 				else
@@ -136,7 +142,7 @@ bashplayer() {
 			else
 				subtitles=`zenity --file-selection --title="select subtitles" --filename=$folder`
 				#run mplayer 
-				mplayer -title "Bash-player $version" $mplayerpa "$video" -sub  "$subtitles"
+				$PLAYER -title "Bash-player $version" $mplayerpa "$video" -sub  "$subtitles"
 				if [ $exitend -eq 0 ]; then
 					bashplayer
 				else
@@ -145,7 +151,7 @@ bashplayer() {
 			fi
 		#not showing subtitle dialog do:
 		else
-			mplayer -title "Bash-player $version" $mplayerpa "$video"
+			$PLAYER -title "Bash-player $version" $mplayerpa "$video"
             if [ $exitend -eq 0 ];then
                 bashplayer
             else
@@ -165,7 +171,7 @@ elif [[ $1 == "--version" ]]; then
 	exit
 else
 	video="$1"
-	mplayer -title "Bash-player $version" $mplayerpa "$video"
+	$PLAYER -title "Bash-player $version" $mplayerpa "$video"
     if [ $exitend -eq 0 ];then
         bashplayer
     else
