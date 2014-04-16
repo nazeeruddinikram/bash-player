@@ -43,7 +43,7 @@ installbp() {
 	chmod +x $bin/bmplayer
 	#moving the icon tho pixmaps
 	echo "[!] Moving bash-player.png.. to $pixmaps"
-	mv bash-player.png $pixmaps
+	mv bash-player.svg $pixmaps
 	#moving desktop 
 	echo "[!] Moving bash-player.desktop.. to $desktop"
 	mv bash-player.desktop $desktop
@@ -72,7 +72,7 @@ uninstallbp() {
 	rm -f $bin/bmplayer
 	#removing the icon to pixmaps
 	echo "[!] rmoving bash-player.png.."
-	rm -f $pixmaps/bash-player.png
+	rm -f $pixmaps/bash-player.svg
 	#removing desktop 
 	echo "[!] removing bash-player.desktop.."
 	rm -f $desktop/bash-player.desktop
