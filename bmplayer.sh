@@ -39,7 +39,8 @@ banner="Bash-player $version - Copyright 2014 (C) levi0x0 (https://github.com/le
 #date="22-01-2014"
 #date="08-04-2014"
 #date="11-04-2014"
-date="13-04-2014"
+#date="13-04-2014"
+date="16-04-2014"
 
 #mplayer options (Ex FULL SCREEN: -fs)
 mplayerpa=""
@@ -69,7 +70,7 @@ else
 	echo "$error Zenity package not installed"
 fi
 #check if mplayer installed
-if mpldsfayer &> /dev/null ;then
+if mplayer &> /dev/null ;then
 	PLAYER="mplayer" 
 	echo "$debug Found mplayer"
 else
