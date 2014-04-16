@@ -60,6 +60,11 @@ subtitlesDialog=1
 #1 for yes
 exitend=1
 
+#startup dialog
+#0 - for no
+#1 - for yes
+startupDialog=0
+
 #enable mplayer utf8 support (for subtitles)
 #echo utf8=true >> ~/.mplayer/config
 
@@ -85,7 +90,7 @@ fi
 
 #help function
 help() {
-zenity  --list \
+	zenity  --list \
 	--title="Mplayer - Shortcut" \
 	--ok-label="Return" \
 	--cancel-label="exit" \
@@ -110,12 +115,16 @@ zenity  --list \
 
 #bash-player function
 bashplayer() {
-	zenity  --question \
-	--width=100 \
-	--height=150 \
-	--title="Bash-player - $version" \
-	--ok-label="Select video" \
-	--cancel-label="Help"
+	if [ $startupDialog -ne 0 ];then
+		zenity  --question \
+		--width=100 \
+		--height=150 \
+		--title="Bash-player - $version" \
+		--ok-label="Select video" \
+		--cancel-label="Help"
+	else
+		echo "[DEBUG] No Startup Dialog."
+	fi
 	#test 1
 	if [ $?  -ne 0 ]; then 
 		help #print help dialog
