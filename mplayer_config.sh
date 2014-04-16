@@ -19,7 +19,7 @@ mpv_dir="/home/$USER/.mpv/"
 #mpv support
 if [ -d $mplayer_dir ];then
 	dir=$mplayer_dir
-	config_path=="/home/$USER/.mplayer/config"
+	config_path="/home/$USER/.mplayer/config"
 elif [ -d $mpv_dir ];then
 	dir=$mpv_dir
 	config_path="/home/$USER/.mpv/config"
