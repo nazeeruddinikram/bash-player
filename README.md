@@ -2,7 +2,7 @@
 
 "Bash-player is A Simple GUI (Graphical User Interface), for Mplayer/Mpv written in Shell."
 
-### Why i should to use Bash-player?
+### Why i should use Bash-player?
 it's your choice :smiley:
 
 ###  MPLAYER + ZENITY == BASH-PLAYER!
