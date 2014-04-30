@@ -27,28 +27,26 @@ exit="[EXIT]"
 banner="Bash-player Installer $version Copyright 2014 (C) levi (levi0x0)"
 
 installbp() {
-	echo "***********************"
-	echo "Bash-Player Installer"
-	echo "***********************"
+	echo "\tBash-Player Installer"
 	if [ $UID != 0 ];then
-		echo "[!] Please run as root! we need to move files."
+		echo "$debug Please run as root! we need to move files."
 		echo -e "Look at the source! (:\n"
 		exit
 	else
-		echo "[!] We are ready to Go!"
+		echo "$debug We are ready to Go!"
 	fi
 	#moving bmplayer.sh to /usr/bin
-	echo "[!] Moving bmplayer.sh.."
+	echo "$debug Moving bmplayer.sh.."
 	mv bmplayer.sh $bin/bmplayer
 	chmod +x $bin/bmplayer
 	#moving the icon tho pixmaps
-	echo "[!] Moving bash-player.png.. to $pixmaps"
+	echo "$debug Moving bash-player.png.. to $pixmaps"
 	mv bash-player.svg $pixmaps
 	#moving desktop 
-	echo "[!] Moving bash-player.desktop.. to $desktop"
+	echo "$debug Moving bash-player.desktop.. to $desktop"
 	mv bash-player.desktop $desktop
     #moving bmplayer_sh
-    echo "[!] Moving mplayer_config.sh to $bin"
+    echo "$debug Moving mplayer_config.sh to $bin"
     mv mplayer_config.sh $bin/mplayer_config
     chmod +x $bin/mplayer_config
 	echo -e "\nOK! Bash-player installed.!"
@@ -57,27 +55,25 @@ installbp() {
 }
 
 uninstallbp() {
-	echo "***********************"
-	echo "Bash-Player uninstaller"
-	echo "***********************"
+	echo "\tBash-Player uninstaller"
 	if [ $UID != 0 ];then
-		echo "[!] Please run as root! we need to remove files."
+		echo "$debug Please run as root! we need to remove files."
 		echo -e "Look at the source! (:\n"
 		exit
 	else
-		echo "[!] We are ready to Go!"
+		echo "$debug We are ready to Go!"
 	fi
 	#removing bmplayer.sh to /usr/bin
-	echo "[!] removing bmplayer.."
+	echo "$debug removing bmplayer.."
 	rm -f $bin/bmplayer
 	#removing the icon to pixmaps
-	echo "[!] rmoving bash-player.png.."
+	echo "$debug rmoving bash-player.png.."
 	rm -f $pixmaps/bash-player.svg
 	#removing desktop 
-	echo "[!] removing bash-player.desktop.."
+	echo "$debug removing bash-player.desktop.."
 	rm -f $desktop/bash-player.desktop
     #removing mplayer_config.sh
-    echo "[!] removing mplayer_config.sh.."
+    echo "$debug removing mplayer_config.sh.."
     rm -f $bin/mplayer_config
 	echo -e "\nOK! Bash-player Not installed.!"
 	echo -e "Written by levi (http://github.com/levi0x0)\n"
@@ -86,8 +82,8 @@ uninstallbp() {
 if [ -z $1 ]; then
 	echo $banner
 	echo -e "\nUsage: $0 [ install | uninstall ]"
-	echo -e "\n\tTo Install: $0 install"
-	echo -e "\tTo Uninstall: $0 uninstall"
+	echo -e "\n\tTo install: $0 install"
+	echo -e "\tTo uninstall: $0 uninstall"
 	echo -e "\nThat's it! (:"
 	exit
 elif [[ $1 == "install" ]];then

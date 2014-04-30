@@ -54,16 +54,22 @@ Prview:
 * The package also available in the Arch Linux AUR repository
 [Arch Linux AUR](https://aur.archlinux.org/packages/bash-player-git/)
 
+###Upgrade bash-player###
+
+Simply run:
+
+`sudo bmplayer -update`
+
+
 ### How to uninstall bash-player?
 
 Download the install.sh script here: [Download install.sh](https://raw.githubusercontent.com/levi0x0/bash-player/master/install.sh)
 
-Run this:
+Run:
 
 ` chmod +x install.sh`
 
 ` ./install.sh uninstall`
-
 
 ###Mplayer_conifg.sh script###
 

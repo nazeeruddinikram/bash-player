@@ -21,14 +21,14 @@
 #  
 #
 #	Author: levi aka levi0x0 (http://github.com/levi0x0/)
-#	Date: 11-04-2014
+#	Date: 30-04-2014
 # 	Description:
 #
 #		"Bash-player script is A simple GUI (Graphical User Interface) for mplayer/mpv
 #		Written in Shell Under Linux. "
 
 #script version
-version="0.7"
+version="0.8"
 
 #videos folder
 folder="/home/$USER/Videos"
@@ -40,9 +40,10 @@ banner="Bash-player $version - Copyright 2014 (C) levi0x0 (https://github.com/le
 #date="08-04-2014"
 #date="11-04-2014"
 #date="13-04-2014"
-date="16-04-2014"
+#date="16-04-2014"
+date="30-04-2014"
 
-#mplayer options (Ex FULL SCREEN: -fs)
+#mplayer options (Example FULL SCREEN: -fs)
 mplayerpa=""
 
 #status variables
@@ -83,11 +84,51 @@ else
 	PLAYER="mpv" 
 	echo "$debug Found mpv"
 	else
-		zenity --error --title="mplayer/mpv not found" --text="mplayer/mpv package not installed"
+		zenity --error \
+			--title="mplayer/mpv not found" \
+			--text="mplayer/mpv package not installed"
 		exit
 	fi
 fi
 
+is_root() {
+	if [ $UID -ne 0 ];then
+		echo "$error Please Run as root."
+		exit
+	fi
+}
+
+cversions() {
+	bmp="https://raw.githubusercontent.com/levi0x0/bash-player/master/bmplayer.sh"
+
+	if curl --version &> /dev/null;then
+		echo "$debug Found CURL"
+	else 
+		zenity --error \
+		--title="Curl Not Found" \
+		--text="Curl Not Installed."
+		exit
+	fi
+
+	cv=`curl -s $bmp | grep "version=" | sed 's/[version\"/=]//g'`
+
+	if [[ $cv == $version ]];then
+		echo "[NOOP] Bash-player $version is the newest VERSION"
+		exit
+	else
+		echo "[GOOD NEWS] Ah! New version is avilable VERSION: $cv"
+		echo -n "Want to Upgrade? (y/n):"
+		read answer
+		if [[ $answer == "y" ]];then
+			echo "$debug Old version $version..."
+		else
+			echo "$exit Bye!"
+			exit
+		fi
+	fi
+
+	
+}
 #help function
 help() {
 	zenity  --list \
@@ -114,7 +155,7 @@ help() {
 }
 
 #bash-player function
-bashplayer() {
+bash_player() {
 	if [ $startupDialog -ne 0 ];then
 		zenity  --question \
 		--width=100 \
@@ -125,45 +166,53 @@ bashplayer() {
 	else
 		echo "$debug No Startup Dialog."
 	fi
-	#test 1
+
 	if [ $?  -ne 0 ]; then 
 		help #print help dialog
 		if [ $? -ne 0 ]; then
 			exit
 		else
-			bashplayer
+			bash_player
 		fi
 	else
 		#select video
-		video=`zenity --file-selection --title="Select video" --filename=$folder`
+		video=`zenity --file-selection \
+			--title="Select a video" \
+			--filename=$folder`
 		if [ $? -ne 0 ]; then
 			echo "$debug no File selected."
 			exit
 		elif [ $subtitlesDialog -eq 1 ]; then
-            zenity --question --title="Add subtitles"  --text="Subtitles? \n\t(You can disable this Dialog)"  --ok-label="Yes, add" --cancel-label="No, play video"
+			zenity --question \
+				--title="Add subtitles"  \
+				--text="Subtitles? \n\t(You can disable this Dialog)"  \
+				--ok-label="Yes, add" \
+				--cancel-label="No, play video"
+
 			if [ $? -ne 0 ]; then
 				$PLAYER -title "Bash-player $version" $mplayerpa "$video"
 				if [ $exitend -eq 0 ];then
-					bashplayer
+					bash_player
 				else
 					exit
 				fi
-			#else select subtitles
 			else
-				subtitles=`zenity --file-selection --title="Select subtitles" --filename=$folder`
+				subtitles=`zenity --file-selection \
+				--title="Select subtitles" \
+				--filename=$folder`
+
 				#run mplayer 
 				$PLAYER -title "Bash-player $version" $mplayerpa "$video" -sub  "$subtitles"
 				if [ $exitend -eq 0 ]; then
-					bashplayer
+					bash_player
 				else
 					exit
 				fi
 			fi
-		#not showing subtitle dialog do:
 		else
 			$PLAYER -title "Bash-player $version" $mplayerpa "$video"
             if [ $exitend -eq 0 ];then
-                bashplayer
+                bash_player
             else
                 exit
             fi
@@ -171,20 +220,61 @@ bashplayer() {
 	fi
 }
  
+usage() {
+	echo -e "Usage: bmplayer [OPTION]\n"
+	echo -e "Options:\n"
+	echo -e "\t-h, --help - print this screen."
+	echo -e "\t-gh, --help-gui - Mplayer help (BaPl GUI)"
+	echo -e "\t-v, --version - print version"
+	echo -e "\t-u, --update - check, upgrade version\n"
+	echo -e "Update bash-player:"
+	echo -e "\tsudo bmplayer --update"
+	echo -e "\n#BashPlayer2014\n"
+}
 if [ -z $1 ];then
 	echo "$debug Bash-player Started..."
-	bashplayer
+	bash_player
 
 #version
-elif [[ $1 == "--version" ]]; then
+elif [[ $1 == "--version" ]] || [[ $1 == "-v" ]]; then
 	echo "Bash-player - $version"
+	exit
+	exit
+#help
+elif [[ $1 == "--help" ]] || [[ $1 == "-h" ]];then
+	usage
+	exit
+#mplayer gui help
+elif [[ $1 == "--help-gui" ]] || [[ $1 == "-hg" ]];then
+	help
+	exit
+#update
+elif [[ $1 == "--update" ]] || [[ $1 == "-u" ]];then
+	repo="https://github.com/levi0x0/bash-player.git"
+	tmpDir="/tmp/bash-player-update"
+	#check versions
+	cversions
+	#update from git repository
+	if git --version &> /dev/null;then
+		echo "$debug Found git"
+	else
+		zenity --error \
+		--title="Git Not Installed." \
+		--text="git not Installed."
+	fi
+	is_root
+	echo "$debug Making Directory: $tmpDir.."
+	echo "$debug Running git clone.."
+	git clone $repo $tmpDir
+	echo "$debug Install.sh.."
+	cd $tmpDir
+	chmod +x install.sh
+	sh install.sh install
+	echo "$debug Remiving $tmpDir"
+	rm -rf $tmpDir
+	echo "[DONE] Bash-Player Upgraded.."
 	exit
 else
 	video="$1"
 	$PLAYER -title "Bash-player $version" $mplayerpa "$video"
-    if [ $exitend -eq 0 ];then
-        bashplayer
-    else
-        exit
-    fi
 fi
