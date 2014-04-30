@@ -154,6 +154,29 @@ help() {
 	"up and down" "Seek forward/backward 1 minute."
 }
 
+upgrade() {
+	repo="https://github.com/levi0x0/bash-player.git"
+	tmpDir="/tmp/bash-player-update"
+	#update from git repository
+	if git --version &> /dev/null;then
+		echo "$debug Found git"
+	else
+		zenity --error \
+		--title="Git Not Installed." \
+		--text="git not Installed."
+	fi
+	is_root
+	echo "$debug Making Directory: $tmpDir.."
+	echo "$debug Running git clone.."
+	git clone $repo $tmpDir
+	echo "$debug Install.sh.."
+	cd $tmpDir
+	chmod +x install.sh
+	sh install.sh install
+	echo "$debug Remiving $tmpDir"
+	rm -rf $tmpDir
+	echo "[DONE] Bash-Player Upgraded.."
+}
 #bash-player function
 bash_player() {
 	if [ $startupDialog -ne 0 ];then
@@ -224,11 +247,14 @@ usage() {
 	echo -e "Usage: bmplayer [OPTION]\n"
 	echo -e "Options:\n"
 	echo -e "\t-h, --help - print this screen."
-	echo -e "\t-gh, --help-gui - Mplayer help (BaPl GUI)"
-	echo -e "\t-v, --version - print version"
-	echo -e "\t-u, --update - check, upgrade version\n"
+	echo -e "\t-gh,--help-gui - Mplayer help (BaPl GUI)."
+	echo -e "\t-v, --version - print version."
+	echo -e "\t-u, --update - check, upgrade version."
+	echo -e "\t-fu, --force-upgrade - upgrade without check versions..\n"
 	echo -e "Update bash-player:"
 	echo -e "\tsudo bmplayer --update"
+	echo -e "\t OR:"
+	echo -e "\tsudo bmplayer --force-update"
 	echo -e "\n#BashPlayer2014\n"
 }
 if [ -z $1 ];then
@@ -250,30 +276,11 @@ elif [[ $1 == "--help-gui" ]] || [[ $1 == "-hg" ]];then
 	exit
 #update
 elif [[ $1 == "--update" ]] || [[ $1 == "-u" ]];then
-	repo="https://github.com/levi0x0/bash-player.git"
-	tmpDir="/tmp/bash-player-update"
-	#check versions
 	cversions
-	#update from git repository
-	if git --version &> /dev/null;then
-		echo "$debug Found git"
-	else
-		zenity --error \
-		--title="Git Not Installed." \
-		--text="git not Installed."
-	fi
-	is_root
-	echo "$debug Making Directory: $tmpDir.."
-	echo "$debug Running git clone.."
-	git clone $repo $tmpDir
-	echo "$debug Install.sh.."
-	cd $tmpDir
-	chmod +x install.sh
-	sh install.sh install
-	echo "$debug Remiving $tmpDir"
-	rm -rf $tmpDir
-	echo "[DONE] Bash-Player Upgraded.."
+	upgrade
 	exit
+elif [[ $1 == "--force-upgrade" ]] || [[ $1 == "-fu" ]];then
+	upgrade
 else
 	video="$1"
 	$PLAYER -title "Bash-player $version" $mplayerpa "$video"

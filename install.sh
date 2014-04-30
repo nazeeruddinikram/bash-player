@@ -27,7 +27,7 @@ exit="[EXIT]"
 banner="Bash-player Installer $version Copyright 2014 (C) levi (levi0x0)"
 
 installbp() {
-	echo "\tBash-Player Installer"
+	echo -e "\tBash-Player Installer"
 	if [ $UID != 0 ];then
 		echo "$debug Please run as root! we need to move files."
 		echo -e "Look at the source! (:\n"
@@ -55,7 +55,7 @@ installbp() {
 }
 
 uninstallbp() {
-	echo "\tBash-Player uninstaller"
+	echo -e "\tBash-Player uninstaller"
 	if [ $UID != 0 ];then
 		echo "$debug Please run as root! we need to remove files."
 		echo -e "Look at the source! (:\n"
