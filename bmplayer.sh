@@ -110,12 +110,12 @@ cversions() {
 		exit
 	fi
 
-	cv=`curl -s $bmp | grep "version=" | sed 's/[version\"/=]//g'`
+	cv=`curl -s "$bmp" | grep "version=" | head -1 | sed 's/[version\"/=]//g'`
 
-	if [[ $cv == $version ]];then
+	if [[ $version == $cv ]];then
 		echo "[NOOP] Bash-player $version is the newest VERSION"
 		exit
-	else
+	elif [[ $version != $cv ]];then
 		echo "[GOOD NEWS] Ah! New version is avilable VERSION: $cv"
 		echo -n "Want to Upgrade? (y/n):"
 		read answer
