@@ -5,24 +5,24 @@
 #
 # Create mplayer custom config for you!
 # Author: levi (levi0x0) "http://github.com/levi0x0/bash-player"
-# Version: 0.3
-# Date: 24-04-2014
+# Version: 0.4
+# Date: 03-05-2014
 
-version=0.3
+version=0.4
 
 banner="Bash-player - Mplayer/Mpv-config $version"
 
-mplayer_dir="/home/$USER/.mplayer/"
-mpv_dir="/home/$USER/.mpv/"
+mplayer_dir="$HOME/.mplayer/"
+mpv_dir="$HOME/.mpv/"
 
 
 #mpv support
 if [ -d $mplayer_dir ];then
 	dir=$mplayer_dir
-	config_path="/home/$USER/.mplayer/config"
+	config_path="$HOME/.mplayer/config"
 elif [ -d $mpv_dir ];then
 	dir=$mpv_dir
-	config_path="/home/$USER/.mpv/config"
+	config_path="$HOME/.mpv/config"
 else
 	echo "Mplayer/mpv config dir not found.!"
 	exit
@@ -101,7 +101,6 @@ backup_config_file() {
 	cp $config_path $dir/config.bak
     	rm -r $config_path
 	echo -e "#Created by bash-player - mplayer_config.sh script " >> $config_path
-	echo -e "#http://github.com/levi0x0/bash-player" >> $config_path
 	echo -e "#Created: $datet\n" >> $config_path
 }
 
@@ -141,7 +140,7 @@ if [ -z $1 ];then
 	exit
 elif [[ $1 == "--mpv" ]];then
         dir=$mpv_dir
-        config_path="/home/$USER/.mpv/config"
+        config_path="$HOME/.mpv/config"
 	backup_config_file
         basic
         subtitle_config	
@@ -149,7 +148,7 @@ elif [[ $1 == "--mpv" ]];then
 	echo -e "[!] Backup Saved to $config_path.bak\n"
 elif [[ $1 == "--mplayer" ]];then
 	dir=$mplayer_dir
-        config_path="/home/$USER/.mplayer/config"
+        config_path="$HOME/.mplayer/config"
 	backup_config_file
 	basic
 	subtitle_config	

@@ -31,7 +31,7 @@
 version="0.8"
 
 #videos folder
-folder="/home/$USER/Videos"
+folder="$HOME/Videos"
 
 #banner
 banner="Bash-player $version - Copyright 2014 (C) levi0x0 (https://github.com/levi0x0)"
@@ -65,9 +65,6 @@ exitend=1
 #0 - for no
 #1 - for yes
 startupDialog=0
-
-#enable mplayer utf8 support (for subtitles)
-#echo utf8=true >> ~/.mplayer/config
 
 #check if zenity installed
 if zenity --version &> /dev/null ;then 
