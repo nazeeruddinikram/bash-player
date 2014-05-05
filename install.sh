@@ -37,13 +37,16 @@ installbp() {
 	fi
 	#moving bmplayer.sh to /usr/bin
 	echo "$debug Moving bmplayer.sh.."
-	install -Dm755 bmplayer.sh $bin/bmplayer
+	install -Dm755 bmplayer.sh "${bin}/bmplayer"
+	install -Dm755 bash-otube.sh "${bin}/botube"
 	#moving the icon tho pixmaps
 	echo "$debug Moving bash-player.png.. to $pixmaps"
 	install -Dm755 bash-player.svg $pixmaps
+	install -Dm755 bash-otube.svg $pixmaps
 	#moving desktop 
 	echo "$debug Moving bash-player.desktop.. to $desktop"
 	install -Dm755  bash-player.desktop $desktop
+	install -Dm755  bash-otube.desktop $desktop
     	#moving bmplayer_sh
     	echo "$debug Moving mplayer_config.sh to $bin"
     	install -Dm755 mplayer_config.sh $bin/mplayer_config
@@ -63,13 +66,16 @@ uninstallbp() {
 	fi
 	#removing bmplayer.sh to /usr/bin
 	echo "$debug removing bmplayer.."
-	rm -f $bin/bmplayer
+	rm -f "${bin}/bmplayer"
+	rm -f "${bin}/botube"
 	#removing the icon to pixmaps
 	echo "$debug rmoving bash-player.png.."
-	rm -f $pixmaps/bash-player.svg
+	rm -f "${pixmaps}/bash-player.svg"
+	rm -f "${pixmaps}/bash-otube.svg"
 	#removing desktop 
 	echo "$debug removing bash-player.desktop.."
-	rm -f $desktop/bash-player.desktop
+	rm -f "${desktop}/bash-player.desktop"
+	rm -f "${desktop}/bash-otube.desktop"
     	#removing mplayer_config.sh
     	echo "$debug removing mplayer_config.sh.."
     	rm -f $bin/mplayer_config

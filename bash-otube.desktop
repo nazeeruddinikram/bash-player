@@ -1,0 +1,8 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Categories=AudioVideo;Player;Video;
+Comment=Play Online Videos in GUI Mode
+Exec=botube
+Icon=/usr/share/pixmaps/bash-otube.svg
+Name=Bash-OTube
+Type=Application

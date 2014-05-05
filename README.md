@@ -7,7 +7,7 @@ it's your choice :smiley:
 
 ###  MPLAYER + ZENITY == BASH-PLAYER!
 
-Prview:
+Preview:
 
 ![SS01](https://raw.githubusercontent.com/wiki/levi0x0/bash-player/bash-playerSS01.png)
 
@@ -70,6 +70,22 @@ Run:
 ` chmod +x install.sh`
 
 ` ./install.sh uninstall`
+
+###Bash-Otube.sh script###
+"Play Online Videos Using Mplayer/MPV and Youtube-DL"
+
+**Supported sites:**
+
+*Bash-OTube is in alpha stage Please Report Bugs*
+
+[http://rg3.github.io/youtube-dl/supportedsites.html](http://rg3.github.io/youtube-dl/supportedsites.html)
+
+*Command:*
+
+`$ botube`
+
+"Also in the applictions menu"
+
 
 ###Mplayer_conifg.sh script###
 
