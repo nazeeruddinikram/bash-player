@@ -23,7 +23,7 @@ error="[ERROR]"
 exit="[EXIT]"
 
 #Random Video Name
-VideoName=`cat /dev/urandom | tr -dc A-Z-a-z | head -c5`
+VideoName=`cat /dev/urandom | tr -dc 0-9 | head -c5`
 
 #OtubeVideo
 OTubeVideo="/tmp/${VideoName}"
@@ -74,8 +74,14 @@ bash_otube() {
 	else
 		if [[ $PLAYER == "mplayer" ]];then
 			youtube-dl -q $url -o $OTubeVideo & 
-			sleep 5 #delay for youtube-dl to start
 			echo "$debug Waiting for youtube-dl to start.. [5s]"
+			sleep 6 | zenity --progress \
+			--title="Downloading Video Info.." \
+			--auto-close \
+			--pulsate \
+			--no-cancel \
+			--text "Downloading Video Info.." &
+			sleep 6
 			$PLAYER "${OTubeVideo}.part"
 			echo "$debug Removing Played Video.."
 			killall -9 youtube-dl
