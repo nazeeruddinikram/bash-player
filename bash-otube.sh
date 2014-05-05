@@ -75,6 +75,7 @@ bash_otube() {
 		if [[ $PLAYER == "mplayer" ]];then
 			youtube-dl -q $url -o $OTubeVideo & 
 			echo "$debug Waiting for youtube-dl to start.. [5s]"
+			#DO NOT DELETE THE DELAY LINE!
 			sleep 6 | zenity --progress \
 			--title="Downloading Video Info.." \
 			--auto-close \
@@ -91,6 +92,7 @@ bash_otube() {
 		fi
 	fi
 }
+p
 
 if [ -z $1 ];then
 	echo "$debug Bash-OTube-Started.."
