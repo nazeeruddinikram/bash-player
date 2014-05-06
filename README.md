@@ -2,7 +2,7 @@
 
 * Stable branch
 
-**Branch: testing ***
+***Branch: testing***
 
 * The scripts may be broken
 
