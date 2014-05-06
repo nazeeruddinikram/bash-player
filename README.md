@@ -1,4 +1,8 @@
-##Branch: testing ##
+***Branch: Master***
+
+* Stable branch
+
+**Branch: testing ***
 
 * The scripts may be broken
 
