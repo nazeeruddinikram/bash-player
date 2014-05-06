@@ -28,7 +28,7 @@
 #		Written in Shell Under Linux. "
 
 #script version
-version="0.9-testing"
+version="0.9"
 
 #videos folder
 folder="$HOME/Videos"
