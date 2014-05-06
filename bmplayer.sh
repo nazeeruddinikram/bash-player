@@ -28,7 +28,7 @@
 #		Written in Shell Under Linux. "
 
 #script version
-version="0.9"
+version="0.9-testing"
 
 #videos folder
 folder="$HOME/Videos"
@@ -96,7 +96,7 @@ is_root() {
 }
 
 cversions() {
-	bmp="https://raw.githubusercontent.com/levi0x0/bash-player/master/bmplayer.sh"
+	bmp="https://raw.githubusercontent.com/levi0x0/bash-player/testing/bmplayer.sh"
 
 	if curl --version &> /dev/null;then
 		echo "$debug Found CURL"
@@ -168,8 +168,7 @@ upgrade() {
 	git clone $repo $tmpDir
 	echo "$debug Install.sh.."
 	cd $tmpDir
-	chmod +x install.sh
-	sh install.sh install
+	sudo make install
 	echo "$debug Remiving $tmpDir"
 	rm -rf $tmpDir
 	echo "[DONE] Bash-Player Upgraded.."

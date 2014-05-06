@@ -12,7 +12,7 @@
 #NOTE: Bash-OTube is in alpha stage Please Report Bugs.
 
 #version
-version=0.2
+version="0.2-testing"
 
 #banner
 banner="Bash-OTube - Watch Online Videos $version"
