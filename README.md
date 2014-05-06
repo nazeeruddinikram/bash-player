@@ -1,3 +1,9 @@
+##Branch: testing ##
+
+* The scripts may be broken *
+
+* Code Testing *
+
 ### What is bash-player?
 
 "Bash-player is A Simple GUI (Graphical User Interface), for Mplayer/Mpv written in Shell."

@@ -29,7 +29,7 @@ vf="mp4"
 af=wav
 
 #Download Limit Rate (Example: 50K, 100K, 4.4M)
-dl="10M"
+dl="100M"
 
 #Delete Videos after Playing
 #0 - for no
@@ -105,6 +105,7 @@ bash_otube() {
 			--no-cancel \
 			--text "Downloading Video Info.." &
 			sleep $delay
+			VideoTitle=`youtube-dl --get-title $url`
 			$PLAYER -title "${VideoTitle}" "${OTubeVideo}.part"
 			echo "$debug Removing Played Video.."
 			killall -9 youtube-dl
