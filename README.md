@@ -1,8 +1,8 @@
 ##Branch: testing ##
 
-* The scripts may be broken *
+* The scripts may be broken
 
-* Code Testing *
+* Code Testing
 
 ### What is bash-player?
 
@@ -95,12 +95,11 @@ Download the Makefile script:
 
 "Also in the applictions menu"
 
-**Pakcages for Bash-Otube.sh script*:*
+**Pakcages for Bash-Otube.sh script***
 
 * youtube-dl
 
-"to install YouTube-DL:"
-
+**to install YouTube-DL:*
 [Download YouTube-DL](http://rg3.github.io/youtube-dl/download.html)
 
 
