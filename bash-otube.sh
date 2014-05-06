@@ -3,7 +3,7 @@
 #
 # This file is part of the bash-player script 
 #
-# Play videos from Online Website!
+# Watch videos from Online Websites!
 # Supported sites:
 # http://rg3.github.io/youtube-dl/supportedsites.html
 # Author: levi (levi0x0) "http://github.com/levi0x0/bash-player"
@@ -12,10 +12,30 @@
 #NOTE: Bash-OTube is in alpha stage Please Report Bugs.
 
 #version
-version=0.1
+version=0.2
 
 #banner
-banner="Bash-OTube - Play Online Videos $version"
+banner="Bash-OTube - Watch Online Videos $version"
+
+#delay for the cache
+#if your internet Connection is Slow Set to 10 or more 
+#if your internet Connection fast set to 5! (Dont set to 1,2,3,4 etc..)
+delay=6
+
+#Video Format (Example: mp4, flv)
+vf="mp4"
+
+#Audio Format (Example: mp3, wav)
+af=wav
+
+#Download Limit Rate (Example: 50K, 100K, 4.4M)
+dl="10M"
+
+#Delete Videos after Playing
+#0 - for no
+#1 - for yes
+delap=1
+
 
 #status variables
 debug="[DEBUG]"
@@ -73,26 +93,31 @@ bash_otube() {
 		exit
 	else
 		if [[ $PLAYER == "mplayer" ]];then
-			youtube-dl -q $url -o $OTubeVideo & 
+			youtube-dl -f $vf -q $url \
+			--audio-format $af \
+			-o $OTubeVideo &
 			echo "$debug Waiting for youtube-dl to start.. [5s]"
 			#DO NOT DELETE THE DELAY LINE!
-			sleep 6 | zenity --progress \
+			sleep $delay | zenity --progress \
 			--title="Downloading Video Info.." \
 			--auto-close \
 			--pulsate \
 			--no-cancel \
 			--text "Downloading Video Info.." &
-			sleep 6
-			$PLAYER "${OTubeVideo}.part"
+			sleep $delay
+			$PLAYER -title "${VideoTitle}" "${OTubeVideo}.part"
 			echo "$debug Removing Played Video.."
 			killall -9 youtube-dl
-			rm -r "${OTubeVideo}.part"
+			if [[ $delap -ne 0 ]];then
+				rm -r "${OTubeVideo}.part"
+			else
+				mv "${OTubeVIdeo}.part" "${OTubeVideo}.${vf}"
+			fi
 		else
-			mpv $url
+			mpv -title "${VideoTitle}" "$url"
 		fi
 	fi
 }
-p
 
 if [ -z $1 ];then
 	echo "$debug Bash-OTube-Started.."

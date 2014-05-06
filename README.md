@@ -72,7 +72,8 @@ Run:
 ` ./install.sh uninstall`
 
 ###Bash-Otube.sh script###
-"Play Online Videos Using Mplayer/MPV and Youtube-DL"
+
+"Watch Videos From YouTube, Vimeo Using Mplayer, Levi0x0 Method"
 
 **Supported sites:**
 
@@ -85,7 +86,6 @@ Run:
 `$ botube`
 
 "Also in the applictions menu"
-
 
 ###Mplayer_conifg.sh script###
 
