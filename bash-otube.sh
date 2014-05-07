@@ -56,23 +56,21 @@ else
 	exit
 fi
 
-if youtube-dl --version &> /dev/null;then
-	echo "$debug Found youtube-dl"
-else
-	zenity --error \
-	--title="YouTubeDL Not Found" \
-	--text="You-Tube Dl not found"
-	exit
-fi
-
 #if mplayer installed
-if mplayer &> /dev/null ;then
-	PLAYER="mplayer" 
-	echo "$debug Found mplayer"
-else
-	if mpv &> /dev/null ;then
+if mpv &> /dev/null ;then
 	PLAYER="mpv" 
 	echo "$debug Found mpv"
+else
+	if mplayer &> /dev/null ;then
+		PLAYER="mplayer" 
+		if youtube-dl --version &> /dev/null;then
+			echo "$debug Found youtube-dl"
+		else
+			zenity --error \
+			--title="YouTubeDL Not Found" \
+			--text="You-Tube Dl not found"
+			exit
+		fi
 	else
 		zenity --error \
 			--title="mplayer/mpv not found" \
@@ -80,6 +78,9 @@ else
 		exit
 	fi
 fi
+
+#set player without checks
+#PLAYER="mplayer"
 
 #dialog
 bash_otube() {
@@ -111,6 +112,7 @@ bash_otube() {
 			killall -9 youtube-dl
 			if [[ $delap -ne 0 ]];then
 				rm -r "${OTubeVideo}.part"
+				rm -r "${OTubeVideo}"
 			else
 				mv "${OTubeVIdeo}.part" "${OTubeVideo}.${vf}"
 			fi
