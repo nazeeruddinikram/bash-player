@@ -1,3 +1,13 @@
+***Branch: Master***
+
+* Stable branch
+
+***Branch: testing***
+
+* The scripts may be broken
+
+* Code Testing
+
 ### What is bash-player?
 
 "Bash-player is A Simple GUI (Graphical User Interface), for Mplayer/Mpv written in Shell."
@@ -41,15 +51,17 @@ Preview:
 * Download the Repository package: [Download]( https://github.com/levi0x0/bash-player/archive/master.zip)
 * Unpac the zip file 
 
-**from the terminal in bash-player dir run:**
+**Run:**
 
-`chmod +x install.sh`
+`sudo make install`
 
-**And install with this:**
+**To install bash-player Only Run:***
 
-`sudo ./install.sh install`
+`sudo make install-bash-player`
 
-**We need root for moving files look at the source!**
+**To install bash-otube Only Run:***
+
+`sudo make install-bash-otube`
 
 * The package also available in the Arch Linux AUR repository
 [Arch Linux AUR](https://aur.archlinux.org/packages/bash-player-git/)
@@ -58,22 +70,22 @@ Preview:
 
 Simply run:
 
-`sudo bmplayer -update`
+`sudo bmplayer --update`
 
 
 ### How to uninstall bash-player?
 
-Download the install.sh script here: [Download install.sh](https://raw.githubusercontent.com/levi0x0/bash-player/master/install.sh)
+Download the Makefile script:
 
-Run:
+"and Run:"
 
-` chmod +x install.sh`
 
-` ./install.sh uninstall`
+` make uninstall`
+
 
 ###Bash-Otube.sh script###
 
-"Watch Videos From YouTube, Vimeo Using Mplayer, Levi0x0 Method"
+"Watch Videos From YouTube, Vimeo etc.. Using Mplayer, Levi0x0 Method"
 
 **Supported sites:**
 
@@ -86,6 +98,14 @@ Run:
 `$ botube`
 
 "Also in the applictions menu"
+
+**Pakcages for Bash-Otube.sh script***
+
+* youtube-dl
+
+**to install YouTube-DL:*
+[Download YouTube-DL](http://rg3.github.io/youtube-dl/download.html)
+
 
 ###Mplayer_conifg.sh script###
 
