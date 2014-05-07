@@ -20,7 +20,7 @@ banner="Bash-OTube - Watch Online Videos $version"
 #delay for the cache
 #if your internet Connection is Slow Set to 10 or more 
 #if your internet Connection fast set to 5! (Dont set to 1,2,3,4 etc..)
-delay=6
+delay=8
 
 #Video Format (Example: mp4, flv)
 vf="mp4"
