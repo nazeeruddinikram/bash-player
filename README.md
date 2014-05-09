@@ -12,11 +12,6 @@
 
 "Bash-player is A Simple GUI (Graphical User Interface), for Mplayer/Mpv written in Shell."
 
-### Why i should use Bash-player?
-it's your choice :smiley:
-
-###  MPLAYER + ZENITY == BASH-PLAYER!
-
 Preview:
 
 ![SS01](https://raw.githubusercontent.com/wiki/levi0x0/bash-player/bash-playerSS01.png)
@@ -48,6 +43,7 @@ Preview:
  `sudo pacman -S zenity`
 
 **Install bash-player**
+
 * Download the Repository package: [Download]( https://github.com/levi0x0/bash-player/archive/master.zip)
 * Unpac the zip file 
 
@@ -65,6 +61,21 @@ Preview:
 
 * The package also available in the Arch Linux AUR repository
 [Arch Linux AUR](https://aur.archlinux.org/packages/bash-player-git/)
+
+###Change bash-player Language:###
+
+***Clone the repository:***
+
+`git clone https://github.com/levi0x0/bash-player.git`
+
+and Run:
+
+`git apply lang/bash-player[LANGUAGE_CODE].patch`
+
+install:
+
+`sudo make install`
+
 
 ###Upgrade bash-player###
 
@@ -99,12 +110,12 @@ Download the Makefile script:
 
 "Also in the applictions menu"
 
-**Pakcages for Bash-Otube.sh script***
+***Pakcages for Bash-Otube.sh script***
 
 * youtube-dl
 
-**to install YouTube-DL:*
-[Download YouTube-DL](http://rg3.github.io/youtube-dl/download.html)
+**to install YouTube-DL:**
+[Download YouTube-dl](http://rg3.github.io/youtube-dl/download.html)
 
 
 ###Mplayer_conifg.sh script###
