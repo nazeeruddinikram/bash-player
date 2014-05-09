@@ -8,6 +8,12 @@
 
 * Code Testing
 
+### Help to translate bash-player scripts###
+
+[Wiki tutorial](https://github.com/levi0x0/bash-player/wiki/translate)
+
+***Only in branch 'testing' for now***
+
 ### What is bash-player?
 
 "Bash-player is A Simple GUI (Graphical User Interface), for Mplayer/Mpv written in Shell."
