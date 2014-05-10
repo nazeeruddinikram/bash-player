@@ -12,7 +12,7 @@
 #NOTE: Bash-OTube is in alpha stage Please Report Bugs.
 
 #version
-version="0.2"
+version="0.3"
 
 #banner
 banner="Bash-OTube - Watch Online Videos $version"
@@ -67,8 +67,8 @@ else
 			echo "$debug Found youtube-dl"
 		else
 			zenity --error \
-			--title="YouTubeDL Not Found" \
-			--text="You-Tube Dl not found"
+			--title="YouTube-dl Not Found" \
+			--text="You-Tube-dl not found"
 			exit
 		fi
 	else
@@ -94,6 +94,13 @@ bash_otube() {
 		exit
 	else
 		if [[ $PLAYER == "mplayer" ]];then
+			#First bash-otube will try to open stream (Maybe the file is .mp4,flv etc..)
+			ret=`$PLAYER -title "Bash-Otube $version" -quiet $url | grep -c "Starting playback"`
+			if [ $ret -eq 1 ];then
+				echo "$debug Success."
+				exit
+			fi
+			#if the file is a URL Stream (like YouTub etc..)
 			youtube-dl -f $vf -q $url \
 			--audio-format $af \
 			-o $OTubeVideo &
