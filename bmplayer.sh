@@ -28,7 +28,7 @@
 #		Written in Shell Under Linux. "
 
 #script version
-version="0.9"
+version="0.10"
 
 #videos folder
 folder="$HOME/Videos"
@@ -209,7 +209,7 @@ bash_player() {
 				--cancel-label="No, play video"
 
 			if [ $? -ne 0 ]; then
-				$PLAYER -title "Bash-player $version" $mplayerpa "$video"
+				$PLAYER -title "Bash-player $version - $video" $mplayerpa "$video"
 				if [ $exitend -eq 0 ];then
 					bash_player
 				else
@@ -221,7 +221,7 @@ bash_player() {
 				--filename=$folder`
 
 				#run mplayer 
-				$PLAYER -title "Bash-player $version" $mplayerpa "$video" -sub  "$subtitles"
+				$PLAYER -title "Bash-player $version - $video" $mplayerpa "$video" -sub  "$subtitles"
 				if [ $exitend -eq 0 ]; then
 					bash_player
 				else
@@ -229,7 +229,7 @@ bash_player() {
 				fi
 			fi
 		else
-			$PLAYER -title "Bash-player $version" $mplayerpa "$video"
+			$PLAYER -title "Bash-player $version - $video" $mplayerpa "$video"
             if [ $exitend -eq 0 ];then
                 bash_player
             else
@@ -279,5 +279,5 @@ elif [[ $1 == "--force-upgrade" ]] || [[ $1 == "-fu" ]];then
 	upgrade
 else
 	video="$1"
-	$PLAYER -title "Bash-player $version" $mplayerpa "$video"
+	$PLAYER -title "Bash-player $version - $video" $mplayerpa "$video"
 fi

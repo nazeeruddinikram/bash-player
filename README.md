@@ -116,11 +116,11 @@ Download the Makefile script:
 
 "Also in the applictions menu"
 
-***Pakcages for Bash-Otube.sh script***
+Pakcages for Bash-Otube.sh script
 
 * youtube-dl
 
-**to install YouTube-DL:**
+"to install YouTube-DL:"
 [Download YouTube-dl](http://rg3.github.io/youtube-dl/download.html)
 
 
