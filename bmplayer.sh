@@ -96,7 +96,7 @@ is_root() {
 }
 
 cversions() {
-	bmp="https://raw.githubusercontent.com/levi0x0/bash-player/testing/bmplayer.sh"
+	bmp="https://raw.githubusercontent.com/levi0x0/bash-player/master/bmplayer.sh"
 
 	if curl --version &> /dev/null;then
 		echo "$debug Found CURL"
