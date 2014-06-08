@@ -22,12 +22,6 @@ banner="Bash-OTube - Watch Online Videos $version"
 #if your internet Connection fast set to 5! (Dont set to 1,2,3,4 etc..)
 delay=8
 
-#Video Format (Example: mp4, flv)
-vf="mp4"
-
-#Audio Format (Example: mp3, wav)
-af=wav
-
 #Download Limit Rate (Example: 50K, 100K, 4.4M)
 dl="100M"
 
@@ -101,8 +95,7 @@ bash_otube() {
 				exit
 			fi
 			#if the file is a URL Stream (like YouTub etc..)
-			youtube-dl -f $vf -q $url \
-			--audio-format $af \
+			youtube-dl -q $url \
 			-o $OTubeVideo &
 			echo "$debug Waiting for youtube-dl to start.. [5s]"
 			#DO NOT DELETE THE DELAY LINE!
